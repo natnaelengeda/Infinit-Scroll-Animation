@@ -66,12 +66,17 @@ body {
 .scroller[data-animated="true"] .scroller_inner {
   width: max-content;
   flex-wrap: nowrap;
-  animation: scroll 10s linear infinite;
+  animation:
+    scroll var(--_animation-duration, 10s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
 }
 
 @keyframes scroll {
   to {
-    transform: translate(-100%);
+    transform: translate(calc(-50% - 0.5rem));
   }
 }
 
