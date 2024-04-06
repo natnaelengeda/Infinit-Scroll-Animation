@@ -1,14 +1,16 @@
 html {
-  color-scheme: dark;
+  color-scheme: white;
 }
 
 body {
   display: grid;
+  /* border: 1px solid white; */
   min-block-size: 100vh;
-  place-content: center;
+  place-content: left;
+  position: relative;
   font-family: system-ui;
   font-size: 1.125rem;
-  background-color: var(--clr-primary-800);
+  background-color: var(--clr-primary-100);
 }
 
 /* general styles */
@@ -27,56 +29,80 @@ body {
   list-style: none;
 }
 
-.tag-list li {
-  padding: 1rem;
+.tag-list .li {
+  /* padding: 1rem; */
+  overflow: hidden;
   background: var(--clr-primary-400);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem -0.25rem var(--clr-primary-900)
 }
 
 .scroller {
-  max-width: 600px;
-  /* overflow: hidden; */
-  /* outline: 3px solid lime; */
+  transform: rotate(-11deg);
+  position: absolute;
+  top: 0;
+  left: -100px;
+  max-width: auto;
+  height: 100vh;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1;
+}
+
+.scroller2 {
+  transform: rotate(-11deg);
+  position: absolute;
+  top: 0;
+  left: 170px;
+  height: 100vh;
+  /* border: 5px solid lime; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  mask: linear-gradient(0deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller2 .scroller_inner {
+  width: fit-content;
+  flex-wrap: nowrap;
+  animation: scroll 10s linear infinite;
+}
+
+.li {
+  width: 240px;
+  height: 340px;
 }
 
 .scroller_inner {
   padding-block: 1rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
+
 .scroller[data-animated="true"] {
   overflow: hidden;
-
-  -webkit-mask: linear-gradient(90deg,
-      transparent,
-      white 20%,
-      white 80%,
-      transparent);
-
-  mask: linear-gradient(90deg,
-      transparent,
-      white 20%,
-      white 80%,
-      transparent);
+  mask: linear-gradient(0deg, transparent, white 20%, white 80%, transparent);
 }
+
+.scroller2 [data-animated="true"] {
+  overflow: hidden;
+  mask: linear-gradient(0deg, transparent, white 20%, white 80%, transparent);
+}
+
 
 .scroller[data-animated="true"] .scroller_inner {
-  width: max-content;
+  width: fit-content;
   flex-wrap: nowrap;
-  animation:
-    scroll var(--_animation-duration, 10s) var(--_animation-direction, forwards) linear infinite;
-}
-
-.scroller[data-direction="right"] {
-  --_animation-direction: reverse;
+  animation: scroll 60s linear infinite;
 }
 
 @keyframes scroll {
   to {
-    transform: translate(calc(-50% - 0.5rem));
+    transform: translateY(-50%);
   }
 }
 
